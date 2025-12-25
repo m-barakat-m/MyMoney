@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب حذف حساب - Money Manager</title>
+    <style>
+        :root {
+            --primary-color: #018159;
+            --secondary-color: #F2B835;
+            --tertiary-color: #39886B;
+            --text-primary: #5D5D5D;
+            --text-secondary: #1C4536;
+            --background-light: #FFFFFF;
+            --background-dark: #000000;
+            --card-light: #FFFFFF;
+            --card-dark: #143528;
+            --success-color: #48BB78;
+            --error-color: #F56565;
+            --warning-color: #ED8936;
+            --info-color: #48BB78;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 8px 20px rgba(1, 129, 89, 0.3);
+        }
+
+        h1 {
+            color: var(--text-secondary);
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-primary);
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .required {
+            color: var(--error-color);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(1, 129, 89, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: var(--text-primary);
+            opacity: 0.7;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(1, 129, 89, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success {
+            background: rgba(72, 187, 120, 0.1);
+            border: 2px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .error {
+            background: rgba(245, 101, 101, 0.1);
+            border: 2px solid var(--error-color);
+            color: var(--error-color);
+        }
+
+        .info-box {
+            background: rgba(242, 184, 53, 0.1);
+            border: 2px solid var(--secondary-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            margin-bottom: 8px;
+            padding-right: 25px;
+            position: relative;
+        }
+
+        .info-box li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            right: 0;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .dark-mode .form-card {
+            background: rgba(20, 53, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .dark-mode input,
+        .dark-mode textarea,
+        .dark-mode select {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .dark-mode label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .dark-mode .info-box {
+            background: rgba(242, 184, 53, 0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(1, 129, 89, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .form-card {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .theme-toggle {
+                top: 10px;
+                left: 10px;
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleDarkMode()">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">الوضع الداكن</span>
+    </button>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">💰</div>
+            <h1>طلب حذف حساب</h1>
+            <p class="subtitle">تطبيق Money Manager - إدارة المصروفات</p>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 معلومات مهمة</h3>
+            <ul>
+                <li>يرجى كتابة "طلب حذف حساب" في عنوان الطلب</li>
+                <li>سوف نحذف جميع بياناتك بشكل نهائي</li>
+                <li>عملية الحذف قد تستغرق حتى 7 أيام عمل</li>
+                <li>سيتم إرسال تأكيد للحذف على بريدك الإلكتروني</li>
+            </ul>
+        </div>
+
+        <div id="success-message" class="message success">
+            <span>✅</span>
+            <span id="success-text">تم إرسال طلب حذف الحساب بنجاح!</span>
+        </div>
+
+        <div id="error-message" class="message error">
+            <span>❌</span>
+            <span id="error-text">حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.</span>
+        </div>
+
+        <form class="form-card" id="delete-account-form" action="https://formspree.io/f/mbjnqobl" method="POST">
+            <div class="form-group">
+                <label for="name">الاسم الكامل <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+            </div>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="example@email.com">
+                <span class="form-hint">سيتم إرسال تأكيد الحذف على هذا البريد</span>
+            </div>
+
+            <div class="form-group">
+                <label for="account-id">رقم المستخدم أو البريد المسجل <span class="required">*</span></label>
+                <input type="text" id="account-id" name="account-id" required placeholder="رقم المستخدم أو البريد المستخدم في التسجيل">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">عنوان الطلب <span class="required">*</span></label>
+                <input type="text" id="subject" name="subject" required placeholder="طلب حذف حساب">
+                <span class="form-hint">يجب أن يحتوي على "طلب حذف حساب"</span>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">سبب الطلب (اختياري)</label>
+                <select id="reason" name="reason">
+                    <option value="">اختر سبب الطلب (اختياري)</option>
+                    <option value="no_longer_use">لا أستخدم التطبيق</option>
+                    <option value="found_better_app">وجدت تطبيقاً أفضل</option>
+                    <option value="privacy_concerns">مخاوف خصوصية</option>
+                    <option value="technical_issues">مشاكل تقنية</option>
+                    <option value="other">أسباب أخرى</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">وصف إضافي (اختياري)</label>
+                <textarea id="message" name="message" placeholder="يمكنك كتابة أي تفاصيل إضافية أو تعليمات خاصة هنا..."></textarea>
+            </div>
+
+            <input type="hidden" name="_replyto" value="m.barakat.m129@gmail.com">
+            <input type="hidden" name="_subject" value="طلب حذف حساب - Money Manager">
+            <input type="hidden" name="_cc" value="m.barakat.m129@gmail.com">
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+                <span id="btn-text">إرسال طلب الحذف</span>
+                <span id="btn-spinner" class="spinner" style="display: none;"></span>
+            </button>
+        </form>
+
+        <div class="contact-info">
+            <p>للاستفسارات: <a href="mailto:m.barakat.m129@gmail.com">m.barakat.m129@gmail.com</a></p>
+            <p>سياسة الخصوصية: <a href="privacy_policy.html" target="_blank">عرض سياسة الخصوصية</a></p>
+        </div>
+    </div>
+
+    <script>
+        // الوضع الداكن
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'الوضع الفاتح';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'الوضع الداكن';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // تحميل تفضيل الوضع الداكن
+        window.addEventListener('load', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').textContent = '☀️';
+                document.getElementById('theme-text').textContent = 'الوضع الفاتح';
+            }
+        });
+
+        // التحقق من صحة النموذج وإرساله
+        document.getElementById('delete-account-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnSpinner = document.getElementById('btn-spinner');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // التحقق من عنوان الطلب
+            const subjectInput = document.getElementById('subject');
+            if (!subjectInput.value.includes('طلب حذف حساب')) {
+                alert('يرجى كتابة "طلب حذف حساب" في عنوان الطلب');
+                subjectInput.focus();
+                return;
+            }
+            
+            // إظهار حالة التحميل
+            submitBtn.disabled = true;
+            btnText.textContent = 'جاري الإرسال...';
+            btnSpinner.style.display = 'block';
+            
+            // إخفاء الرسائل السابقة
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            try {
+                // إرسال البيانات باستخدام Formspree
+                const formData = new FormData(this);
+                
+                // إضافة معلومات إضافية
+                formData.append('_format', 'plain');
+                formData.append('user_ip', await getIP());
+                formData.append('user_agent', navigator.userAgent);
+                formData.append('timestamp', new Date().toISOString());
+                
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // إظهار رسالة النجاح
+                    successMessage.style.display = 'flex';
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // إعادة تعيين النموذج
+                    this.reset();
+                    
+                    // التمرير للأعلى لمشاهدة رسالة النجاح
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    throw new Error('فشل إرسال الطلب');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                
+                // إظهار رسالة الخطأ
+                errorMessage.style.display = 'flex';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                // إعادة حالة الزر
+                submitBtn.disabled = false;
+                btnText.textContent = 'إرسال طلب الحذف';
+                btnSpinner.style.display = 'none';
+            }
+        });
+
+        // الحصول على IP المستخدم (لأغراض التحليل فقط)
+        async function getIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                return 'غير معروف';
+            }
+        }
+
+        // إضافة تحقق على العنوان أثناء الكتابة
+        document.getElementById('subject').addEventListener('input', function() {
+            const value = this.value;
+            const requiredText = 'طلب حذف حساب';
+            
+            if (value.includes(requiredText)) {
+                this.style.borderColor = '#48BB78';
+                this.style.boxShadow = '0 0 0 3px rgba(72, 187, 120, 0.1)';
+            } else {
+                this.style.borderColor = '';
+                this.style.boxShadow = '';
+            }
+        });
+
+        // التأكيد على الحقول المطلوبة
+        const requiredInputs = document.querySelectorAll('input[required], select[required]');
+        requiredInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.style.borderColor = '#F56565';
+                    this.style.boxShadow = '0 0 0 3px rgba(245, 101, 101, 0.1)';
+                } else {
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
