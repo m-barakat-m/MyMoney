@@ -309,13 +309,7 @@
 
                 <section class="card">
                     <h2>مشاركة المعلومات</h2>
-                    <p>نحن <strong>لا</strong> نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. قد نشارك المعلومات فقط في الحالات التالية:</p>
-                    <ul>
-                        <li>مع مقدمي الخدمات الذين يساعدوننا في تشغيل التطبيق</li>
-                        <li>عندما يقتضي القانون ذلك</li>
-                        <li>لحماية حقوقنا أو سلامة المستخدمين</li>
-                        <li>مع موافقتك الصريحة</li>
-                    </ul>
+                    <p>نحن <strong>لا</strong> نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. قد نشارك المعلومات فقط مع مقدمي الخدمات الذين يساعدوننا في تشغيل التطبيق، وذلك فقط لغرض تقديم الخدمات لك.</p>
                 </section>
 
                 <section class="card">
@@ -425,13 +419,7 @@
 
                 <section class="card">
                     <h2>Information Sharing</h2>
-                    <p>We do <strong>NOT</strong> sell or rent your personal information to third parties. We may share information only in the following cases:</p>
-                    <ul>
-                        <li>With service providers who help us operate the app</li>
-                        <li>When required by law</li>
-                        <li>To protect our rights or user safety</li>
-                        <li>With your explicit consent</li>
-                    </ul>
+                    <p>We do <strong>NOT</strong> sell or rent your personal information to third parties. We may share information only with service providers who help us operate the app, and only for the purpose of providing services to you.</p>
                 </section>
 
                 <section class="card">
