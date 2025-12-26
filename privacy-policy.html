@@ -1,24 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سياسة الخصوصية - مدير المصروفات</title>
+    <title>Privacy Policy - My Money</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #018159;
-            --secondary-color: #F2B835;
-            --tertiary-color: #39886B;
-            --text-primary: #5D5D5D;
-            --text-secondary: #1C4536;
-            --background-light: #FFFFFF;
-            --background-dark: #000000;
-            --card-light: #FFFFFF;
-            --card-dark: #143528;
-            --success-color: #48BB78;
-            --error-color: #F56565;
-            --warning-color: #ED8936;
-            --info-color: #48BB78;
+            --primary: #4A6FA5;
+            --primary-light: #6B8CC6;
+            --primary-dark: #2E4C7A;
+            --secondary: #FF8E53;
+            --secondary-light: #FFB080;
+            --secondary-dark: #E86E30;
+            --accent: #36B37E;
+            --text-primary: #333333;
+            --text-secondary: #2C3E50;
+            --text-light: #FFFFFF;
+            --background: #FFFFFF;
+            --card: #FFFFFF;
+            --success: #48BB78;
+            --warning: #ED8936;
+            --shadow: rgba(74, 111, 165, 0.08);
+            --shadow-dark: rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+        }
+
+        .dark-mode {
+            --primary: #5D8FD4;
+            --primary-light: #7CA9E8;
+            --primary-dark: #3A5F9A;
+            --secondary: #FF9E68;
+            --text-primary: #F0F0F0;
+            --text-secondary: #D4E4F7;
+            --background: #121826;
+            --card: #1E2A3D;
+            --success: #38A169;
+            --warning: #DD6B20;
+            --shadow: rgba(30, 42, 61, 0.5);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -28,534 +49,650 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.7;
             color: var(--text-primary);
-            background-color: var(--background-light);
-            max-width: 1200px;
+            background: var(--background);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(74, 111, 165, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 142, 83, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .dark-mode {
-            background-color: var(--background-dark);
-            color: #FFFFFF;
-        }
-
-        .dark-mode .card {
-            background-color: var(--card-dark);
-            color: #FFFFFF;
-        }
-
-        .dark-mode h1, 
-        .dark-mode h2, 
-        .dark-mode h3 {
-            color: #FFFFFF;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        header {
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
-            border-radius: 20px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(1, 129, 89, 0.2);
+            margin: 30px 0 50px;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 20s linear infinite;
         }
 
         .logo {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
-        h1 {
-            font-size: 2.5rem;
+        .app-title {
+            font-size: 2.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 10px;
-            color: var(--text-secondary);
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
-        .date {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background: var(--card-light);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--secondary-color);
+        .policy-title {
             font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
-        h3 {
-            color: var(--tertiary-color);
+        .last-updated {
+            display: inline-block;
+            background: rgba(255, 142, 83, 0.1);
+            color: var(--secondary-dark);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 142, 83, 0.3);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid rgba(74, 111, 165, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-dark);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient-secondary);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(74, 111, 165, 0.2);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(74, 111, 165, 0.1);
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--gradient-secondary);
+        }
+
+        .card h3 {
+            color: var(--accent);
             margin: 25px 0 15px;
             font-size: 1.4rem;
-        }
-
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        ul {
-            margin-bottom: 20px;
-            padding-right: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-right: 10px;
-        }
-
-        li:before {
-            content: "•";
-            color: var(--primary-color);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-right: 10px;
-        }
-
-        .highlight {
-            background-color: rgba(242, 184, 53, 0.1);
-            border-right: 4px solid var(--secondary-color);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .contact-item {
-            flex: 1;
-            min-width: 200px;
-            padding: 15px;
-            background: rgba(1, 129, 89, 0.05);
-            border-radius: 10px;
-            border-right: 3px solid var(--primary-color);
-        }
-
-        .icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-left: 10px;
-        }
-
-        .toggle-theme {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: pointer;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 5px 15px rgba(1, 129, 89, 0.3);
+        }
+
+        .card h3 i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            margin-bottom: 18px;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .card li::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 12px;
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        /* Delete Account Button */
+        .delete-account-btn {
+            display: inline-block;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 142, 83, 0.3);
+        }
+
+        .delete-account-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 142, 83, 0.4);
+        }
+
+        .delete-account-btn i {
+            margin-right: 8px;
+        }
+
+        /* Important Note */
+        .important-note {
+            background: linear-gradient(135deg, rgba(255, 142, 83, 0.08) 0%, rgba(74, 111, 165, 0.08) 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .important-note::before {
+            content: '!';
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .important-note strong {
+            color: var(--secondary-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            background: rgba(74, 111, 165, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(74, 111, 165, 0.1);
             transition: all 0.3s ease;
         }
 
-        .toggle-theme:hover {
-            background: var(--tertiary-color);
-            transform: translateY(-2px);
+        .contact-item:hover {
+            background: rgba(74, 111, 165, 0.1);
+            transform: translateY(-3px);
         }
 
-        footer {
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .contact-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(74, 111, 165, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 12px 30px rgba(74, 111, 165, 0.4);
+        }
+
+        /* Footer */
+        .footer {
             text-align: center;
             margin-top: 50px;
-            padding: 30px;
-            border-top: 2px solid rgba(1, 129, 89, 0.1);
+            padding: 40px 0;
+            border-top: 1px solid rgba(74, 111, 165, 0.1);
             color: var(--text-secondary);
         }
 
-        .language-switcher {
-            margin: 20px 0;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+        .copyright {
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
 
-        .lang-btn {
-            padding: 8px 16px;
-            background: rgba(1, 129, 89, 0.1);
-            border: 1px solid var(--primary-color);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .lang-btn:hover,
-        .lang-btn.active {
-            background: var(--primary-color);
-            color: white;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        .card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+        .card:nth-child(7) { animation-delay: 0.7s; }
+        .card:nth-child(8) { animation-delay: 0.8s; }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .container {
+                padding: 15px;
             }
 
-            header {
-                padding: 30px 15px;
+            .app-title {
+                font-size: 2.2rem;
             }
 
-            h1 {
-                font-size: 2rem;
+            .policy-title {
+                font-size: 1.5rem;
             }
 
             .card {
-                padding: 20px;
+                padding: 25px;
             }
 
-            .contact-info {
-                flex-direction: column;
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .theme-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
 
+        @media (max-width: 480px) {
+            .app-title {
+                font-size: 1.8rem;
+            }
+
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
         @media print {
-            .toggle-theme,
-            .language-switcher {
+            .theme-toggle {
                 display: none;
+            }
+
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
             }
         }
     </style>
 </head>
 <body>
-    <button class="toggle-theme" onclick="toggleDarkMode()">
-        <span id="theme-icon">🌙</span>
-        <span id="theme-text">الوضع الداكن</span>
-    </button>
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
     <div class="container">
-        <header>
-            <div class="logo">💰</div>
-            <h1>سياسة الخصوصية</h1>
-            <div class="date">تاريخ السريان: <span id="current-date"></span></div>
-            <div class="language-switcher">
-                <button class="lang-btn active" onclick="changeLanguage('ar')">العربية</button>
-                <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo_transparent_72.png" alt="My Money Logo" class="logo">
+            </div>
+            
+            <h1 class="app-title">My Money</h1>
+            <h2 class="policy-title">Privacy Policy</h2>
+            
+            <div class="last-updated">
+                <i class="fas fa-calendar-alt"></i>
+                Last updated: <span id="current-date"></span>
             </div>
         </header>
 
         <main>
-            <!-- النسخة العربية -->
-            <div id="arabic-version" class="language-content">
-                <section class="card">
-                    <h2>مقدمة</h2>
-                    <p>مرحبًا بك في تطبيق "مدير المصروفات". نحن نقدّر خصوصيتك ونلتزم بحماية بياناتك الشخصية. توضح سياسة الخصوصية هذه كيفية جمع واستخدام ومشاركة معلوماتك عند استخدام تطبيقنا.</p>
-                    <p>باستخدامك للتطبيق، فإنك توافق على ممارسات جمع المعلومات والاستخدام المذكورة في هذه السياسة.</p>
-                </section>
+            <!-- Introduction -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Introduction</h2>
+                <p>Welcome to the "My Money" application. We value your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect and use your information when you use our app.</p>
+                <p>By using the app, you agree to the information collection and use practices described in this policy.</p>
+            </section>
 
-                <section class="card">
-                    <h2>المعلومات التي نجمعها</h2>
-                    
-                    <h3>١. المعلومات التي تقدمها لنا:</h3>
-                    <ul>
-                        <li>معلومات الحساب (عند التسجيل باستخدام جوجل أو فيسبوك)</li>
-                        <li>بيانات المعاملات المالية (المصروفات، الدخل، الفئات)</li>
-                        <li>التفضيلات والإعدادات</li>
-                        <li>الصور المرفقة (إذا قمت بإضافة صور للمعاملات)</li>
-                    </ul>
+            <!-- Information We Collect -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h2>Information We Collect</h2>
+                
+                <h3><i class="fas fa-user-edit"></i>1. Information You Provide:</h3>
+                <ul>
+                    <li><strong>Name</strong> (when registering)</li>
+                    <li><strong>Email address</strong> (for account creation and communication)</li>
+                </ul>
 
-                    <h3>٢. المعلومات التي نجمعها تلقائيًا:</h3>
-                    <ul>
-                        <li>معلومات الجهاز ونظام التشغيل</li>
-                        <li>سجل الاستخدام والتطبيق</li>
-                        <li>بيانات التحليلات المجهولة الهوية</li>
-                    </ul>
+                <h3><i class="fas fa-robot"></i>2. Information Collected Automatically:</h3>
+                <ul>
+                    <li>Usage patterns and app interaction data</li>
+                    <li>Anonymous analytics for service improvement</li>
+                </ul>
 
-                    <div class="highlight">
-                        <p><strong>ملاحظة مهمة:</strong> نحن <strong>لا</strong> نجمع أو نخزن أي معلومات دفع مثل أرقام البطاقات الائتمانية. جميع المعاملات المالية تقتصر على بيانات التتبع الشخصية الخاصة بك.</p>
-                    </div>
-                </section>
+                <div class="important-note">
+                    <strong>Important Note:</strong> We do <strong>NOT</strong> collect or store any payment information, financial transaction data, or credit card details. We only collect basic information necessary for app functionality.
+                </div>
+            </section>
 
-                <section class="card">
-                    <h2>كيف نستخدم معلوماتك</h2>
-                    <ul>
-                        <li>تقديم وتحسين خدمات التطبيق</li>
-                        <li>عرض التقارير والتحليلات المالية</li>
-                        <li>تخصيص تجربة المستخدم</li>
-                        <li>إرسال إشعارات مهمة (اختياري)</li>
-                        <li>ضمان أمان حسابك</li>
-                        <li>الامتثال للقوانين واللوائح</li>
-                    </ul>
-                </section>
+            <!-- How We Use Information -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h2>How We Use Your Information</h2>
+                <ul>
+                    <li>Improve user experience and app functionality</li>
+                    <li>Display personalized statistics and insights</li>
+                    <li>Provide intelligent financial tips and recommendations</li>
+                    <li>Send relevant notifications and updates</li>
+                    <li>Ensure account security and prevent unauthorized access</li>
+                </ul>
+            </section>
 
-                <section class="card">
-                    <h2>مشاركة المعلومات</h2>
-                    <p>نحن <strong>لا</strong> نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. قد نشارك المعلومات فقط مع مقدمي الخدمات الذين يساعدوننا في تشغيل التطبيق، وذلك فقط لغرض تقديم الخدمات لك.</p>
-                </section>
+            <!-- Data Storage & Security -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2>Data Storage & Security</h2>
+                <p>We use reasonable technical and administrative security measures to protect your information:</p>
+                <ul>
+                    <li>Secure cloud storage with encryption</li>
+                    <li>Regular security audits and updates</li>
+                    <li>Access controls and authentication protocols</li>
+                    <li>Data anonymization where possible</li>
+                </ul>
+            </section>
 
-                <section class="card">
-                    <h2>خدمات الطرف الثالث</h2>
-                    <p>نستخدم خدمات الطرف الثالث التالية:</p>
-                    <ul>
-                        <li><strong>Firebase</strong>: لتخزين البيانات والمصادقة</li>
-                        <li><strong>Google Analytics</strong>: لفهم كيفية استخدام التطبيق</li>
-                        <li><strong>مقدمي خدمات السحابة</strong>: لاستضافة التطبيق</li>
-                    </ul>
-                    <p>تخضع هذه الخدمات لسياسات خصوصية خاصة بها. ننصحك بمراجعة سياساتهم.</p>
-                </section>
+            <!-- Your Rights -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h2>Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access your personal data</li>
+                    <li>Correct inaccurate information</li>
+                    <li>Request deletion of your account and data</li>
+                    <li>Opt-out of notifications</li>
+                    <li>Withdraw consent at any time</li>
+                </ul>
+                
+                <a href="Update request-del-acc.html" class="delete-account-btn">
+                    <i class="fas fa-user-times"></i> Request Account Deletion
+                </a>
+            </section>
 
-                <section class="card">
-                    <h2>الأمان</h2>
-                    <p>نحن نستخدم إجراءات أمنية تقنية وإدارية معقولة لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الإفشاء أو التدمير. وتشمل هذه:</p>
-                    <ul>
-                        <li>التشفير أثناء نقل البيانات</li>
-                        <li>مصادقة ثنائية العوامل (اختياري)</li>
-                        <li>التحقق من الهوية البيومترية (إذا دعمها الجهاز)</li>
-                        <li>مراجعات أمنية منتظمة</li>
-                    </ul>
-                </section>
+            <!-- Policy Changes -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h2>Changes to Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by sending a notice through the app or email.</p>
+                <p>We advise you to review this policy periodically for any changes.</p>
+            </section>
 
-                <section class="card">
-                    <h2>حقوقك</h2>
-                    <p>لديك الحق في:</p>
-                    <ul>
-                        <li>الوصول إلى بياناتك الشخصية</li>
-                        <li>تصحيح البيانات غير الدقيقة</li>
-                        <li>طلب حذف بياناتك</li>
-                        <li>تقييد معالجة بياناتك</li>
-                        <li>تنزيل بياناتك في صيغة قابلة للقراءة</li>
-                        <li>سحب الموافقة في أي وقت</li>
-                    </ul>
-                    <p>لممارسة أي من هذه الحقوق، يرجى الاتصال بنا عبر المعلومات الواردة أدناه.</p>
-                </section>
-
-                <section class="card">
-                    <h2>التغييرات على سياسة الخصوصية</h2>
-                    <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. سنقوم بإعلامك بأي تغييرات جوهرية عن طريق إرسال إشعار عبر التطبيق أو البريد الإلكتروني أو نشر إشعار بارز على موقعنا.</p>
-                    <p>ننصحك بمراجعة هذه السياسة بشكل دوري لأي تغييرات.</p>
-                </section>
-
-                <section class="card">
-                    <h2>اتصل بنا</h2>
-                    <p>إذا كان لديك أي أسئلة أو مخاوف بشأن سياسة الخصوصية هذه، يرجى الاتصال بنا:</p>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="icon">📧</span>
-                            <strong>البريد الإلكتروني:</strong>
-                            <p>privacy@moneymanager.com</p>
+            <!-- Contact Us -->
+            <section class="card">
+                <div class="card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h2>Contact Us</h2>
+                <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        
-                        <div class="contact-item">
-                            <span class="icon">🌐</span>
-                            <strong>موقع الويب:</strong>
-                            <p>www.moneymanager.com/privacy</p>
-                        </div>
+                        <h4>Email</h4>
+                        <p>m.barakat.m129@gmail.com</p>
                     </div>
-                </section>
-            </div>
-
-            <!-- English Version (Hidden by Default) -->
-            <div id="english-version" class="language-content" style="display: none;">
-                <section class="card">
-                    <h2>Introduction</h2>
-                    <p>Welcome to the "Money Manager" application. We value your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and share your information when you use our app.</p>
-                    <p>By using the app, you agree to the information collection and use practices described in this policy.</p>
-                </section>
-
-                <section class="card">
-                    <h2>Information We Collect</h2>
-                    
-                    <h3>1. Information You Provide:</h3>
-                    <ul>
-                        <li>Account information (when registering with Google or Facebook)</li>
-                        <li>Financial transaction data (expenses, income, categories)</li>
-                        <li>Preferences and settings</li>
-                        <li>Attached images (if you add images to transactions)</li>
-                    </ul>
-
-                    <h3>2. Information Collected Automatically:</h3>
-                    <ul>
-                        <li>Device and operating system information</li>
-                        <li>Usage and application logs</li>
-                        <li>Anonymous analytics data</li>
-                    </ul>
-
-                    <div class="highlight">
-                        <p><strong>Important Note:</strong> We do <strong>NOT</strong> collect or store any payment information such as credit card numbers. All financial transactions are limited to your personal tracking data.</p>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <h2>How We Use Your Information</h2>
-                    <ul>
-                        <li>Provide and improve app services</li>
-                        <li>Display financial reports and analytics</li>
-                        <li>Personalize user experience</li>
-                        <li>Send important notifications (optional)</li>
-                        <li>Ensure account security</li>
-                        <li>Comply with laws and regulations</li>
-                    </ul>
-                </section>
-
-                <section class="card">
-                    <h2>Information Sharing</h2>
-                    <p>We do <strong>NOT</strong> sell or rent your personal information to third parties. We may share information only with service providers who help us operate the app, and only for the purpose of providing services to you.</p>
-                </section>
-
-                <section class="card">
-                    <h2>Third-Party Services</h2>
-                    <p>We use the following third-party services:</p>
-                    <ul>
-                        <li><strong>Firebase</strong>: For data storage and authentication</li>
-                        <li><strong>Google Analytics</strong>: To understand app usage</li>
-                        <li><strong>Cloud Providers</strong>: For app hosting</li>
-                    </ul>
-                    <p>These services have their own privacy policies. We advise you to review their policies.</p>
-                </section>
-
-                <section class="card">
-                    <h2>Security</h2>
-                    <p>We use reasonable technical and administrative security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. These include:</p>
-                    <ul>
-                        <li>Encryption during data transmission</li>
-                        <li>Two-factor authentication (optional)</li>
-                        <li>Biometric authentication (if supported by device)</li>
-                        <li>Regular security reviews</li>
-                    </ul>
-                </section>
-
-                <section class="card">
-                    <h2>Your Rights</h2>
-                    <p>You have the right to:</p>
-                    <ul>
-                        <li>Access your personal data</li>
-                        <li>Correct inaccurate data</li>
-                        <li>Request deletion of your data</li>
-                        <li>Restrict processing of your data</li>
-                        <li>Download your data in a readable format</li>
-                        <li>Withdraw consent at any time</li>
-                    </ul>
-                    <p>To exercise any of these rights, please contact us using the information below.</p>
-                </section>
-
-                <section class="card">
-                    <h2>Changes to Privacy Policy</h2>
-                    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by sending a notice through the app, email, or by prominently posting a notice on our website.</p>
-                    <p>We advise you to review this policy periodically for any changes.</p>
-                </section>
-
-                <section class="card">
-                    <h2>Contact Us</h2>
-                    <p>If you have any questions or concerns about this Privacy Policy, please contact us:</p>
-                    
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span class="icon">📧</span>
-                            <strong>Email:</strong>
-                            <p>privacy@moneymanager.com</p>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <span class="icon">🌐</span>
-                            <strong>Website:</strong>
-                            <p>www.moneymanager.com/privacy</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </main>
 
-        <footer>
-            <p>© <span id="current-year"></span> مدير المصروفات - جميع الحقوق محفوظة</p>
-            <p>آخر تحديث: <span id="last-updated"></span></p>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="copyright">
+                <p>© <span id="current-year"></span> My Money - All Rights Reserved</p>
+                <p>Designed with security and privacy as top priorities</p>
+            </div>
         </footer>
     </div>
 
     <script>
-        // Set current date
+        // Set current date and year
         const currentDate = new Date();
-        document.getElementById('current-date').textContent = currentDate.toLocaleDateString('ar-SA');
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('current-date').textContent = dateFormatter.format(currentDate);
         document.getElementById('current-year').textContent = currentDate.getFullYear();
-        document.getElementById('last-updated').textContent = currentDate.toLocaleDateString('ar-SA');
 
         // Dark mode toggle
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
-            const themeIcon = document.getElementById('theme-icon');
-            const themeText = document.getElementById('theme-text');
+            const themeIcon = document.querySelector('.theme-btn i');
             
             if (document.body.classList.contains('dark-mode')) {
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'الوضع الفاتح';
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('darkMode', 'enabled');
             } else {
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'الوضع الداكن';
-            }
-        }
-
-        // Language switcher
-        function changeLanguage(lang) {
-            const arabicVersion = document.getElementById('arabic-version');
-            const englishVersion = document.getElementById('english-version');
-            const arBtn = document.querySelector('[onclick="changeLanguage(\'ar\')"]');
-            const enBtn = document.querySelector('[onclick="changeLanguage(\'en\')"]');
-            
-            if (lang === 'ar') {
-                arabicVersion.style.display = 'block';
-                englishVersion.style.display = 'none';
-                arBtn.classList.add('active');
-                enBtn.classList.remove('active');
-                document.documentElement.lang = 'ar';
-                document.documentElement.dir = 'rtl';
-            } else {
-                arabicVersion.style.display = 'none';
-                englishVersion.style.display = 'block';
-                arBtn.classList.remove('active');
-                enBtn.classList.add('active');
-                document.documentElement.lang = 'en';
-                document.documentElement.dir = 'ltr';
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('darkMode', 'disabled');
             }
         }
 
         // Check for saved theme preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            toggleDarkMode();
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-btn i').className = 'fas fa-sun';
         }
 
-        // Save theme preference
-        document.querySelector('.toggle-theme').addEventListener('click', function() {
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
-        // Load saved theme preference
-        window.addEventListener('load', function() {
-            const savedDarkMode = localStorage.getItem('darkMode');
-            if (savedDarkMode === 'true') {
-                document.body.classList.add('dark-mode');
-                document.getElementById('theme-icon').textContent = '☀️';
-                document.getElementById('theme-text').textContent = 'الوضع الفاتح';
-            }
+        // Add hover effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
         });
     </script>
 </body>
