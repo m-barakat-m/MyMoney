@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب حذف حساب - Money Manager</title>
+    <title>Account Deletion Request - My Money</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== نظام الألوان ===== */
+        /* ===== Color System ===== */
         :root {
             --primary-color: #018159;
             --secondary-color: #F2B835;
             --success-color: #48BB78;
             --error-color: #F56565;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #718096;
+            --border-color: #e1e5e9;
         }
 
         * {
@@ -23,18 +28,17 @@
         body {
             font-family: 'Segoe UI', 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            background-color: var(--card-bg);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background-attachment: fixed;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 750px;
             width: 100%;
         }
 
@@ -43,31 +47,44 @@
             margin-bottom: 30px;
         }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), #39886B);
-            border-radius: 50%;
+        .logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 40px;
-            box-shadow: 0 8px 20px rgba(1, 129, 89, 0.3);
+            border-radius: 20px;
+            padding: 15px;
+            background: var(--light-bg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         h1 {
-            color: #1a202c;
-            font-size: 28px;
+            color: var(--text-color);
+            font-size: 32px;
             margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--light-text);
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
         .form-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
@@ -77,7 +94,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #4a5568;
+            color: var(--text-color);
             font-weight: 600;
             font-size: 14px;
         }
@@ -89,12 +106,12 @@
         input, textarea, select {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #e1e5e9;
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             font-size: 16px;
             font-family: inherit;
             transition: all 0.3s ease;
-            background: white;
+            background: var(--card-bg);
         }
 
         input:focus, textarea:focus, select:focus {
@@ -112,8 +129,7 @@
             display: block;
             margin-top: 6px;
             font-size: 12px;
-            color: #718096;
-            opacity: 0.7;
+            color: var(--light-text);
         }
 
         .submit-btn {
@@ -131,6 +147,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-top: 10px;
         }
 
         .submit-btn:hover {
@@ -204,7 +221,7 @@
 
         .info-box li {
             margin-bottom: 10px;
-            padding-right: 25px;
+            padding-left: 25px;
             position: relative;
             color: #856404;
         }
@@ -213,7 +230,7 @@
             content: "•";
             color: var(--secondary-color);
             position: absolute;
-            right: 0;
+            left: 0;
             font-size: 20px;
         }
 
@@ -222,7 +239,25 @@
             padding-top: 20px;
             border-top: 2px solid rgba(0, 0, 0, 0.05);
             text-align: center;
-            color: #718096;
+            color: var(--light-text);
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .request-id-box {
+            background: rgba(1, 129, 89, 0.1);
+            border: 1px solid rgba(1, 129, 89, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: monospace;
+        }
+
+        .request-id-box strong {
+            color: var(--primary-color);
         }
 
         @media (max-width: 768px) {
@@ -231,7 +266,12 @@
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 26px;
+            }
+            
+            .logo-container {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -239,102 +279,107 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">💰</div>
-            <h1>طلب حذف حساب</h1>
-            <p style="color: #4a5568;">تطبيق Money Manager - إدارة المصروفات</p>
+            <div class="logo-container">
+                <img src="logo_transparent_72.png" alt="My Money Logo" class="logo">
+            </div>
+            <h1>Account Deletion Request</h1>
+            <p class="subtitle">My Money - Expense Management App</p>
         </div>
 
         <div class="info-box">
-            <h3><i class="fas fa-info-circle"></i> معلومات مهمة</h3>
+            <h3><i class="fas fa-info-circle"></i> Important Information</h3>
             <ul>
-                <li>يرجى كتابة <strong>"طلب حذف حساب"</strong> في عنوان الطلب</li>
-                <li>سيتم حذف جميع بياناتك بشكل نهائي خلال 7 أيام عمل</li>
-                <li>ستتلقى تأكيداً بالبريد الإلكتروني عند اكتمال الحذف</li>
-                <li>سيتم إنشاء رقم طلب تلقائياً لمتابعة حالة الطلب</li>
+                <li>Please write <strong>"Account Deletion Request"</strong> in the subject line</li>
+                <li>All your data will be permanently deleted within 7 business days</li>
+                <li>You will receive a confirmation email when deletion is complete</li>
+                <li>A request ID will be automatically generated to track your request status</li>
             </ul>
         </div>
 
         <div id="success-message" class="message success">
             <span><i class="fas fa-check-circle fa-2x"></i></span>
             <div>
-                <strong>تم إرسال الطلب بنجاح!</strong>
+                <strong>Request Sent Successfully!</strong>
                 <div id="request-details" style="margin-top: 10px; font-size: 14px;"></div>
-                <p style="margin-top: 10px; font-size: 14px;">سيتم مراجعة طلبك خلال 24 ساعة.</p>
+                <p style="margin-top: 10px; font-size: 14px;">Your request will be reviewed within 24 hours.</p>
             </div>
         </div>
 
         <div id="error-message" class="message error">
             <span><i class="fas fa-exclamation-circle fa-2x"></i></span>
             <div>
-                <strong>حدث خطأ!</strong>
+                <strong>Error Occurred!</strong>
                 <p id="error-details" style="margin-top: 5px; font-size: 14px;"></p>
             </div>
         </div>
 
         <form class="form-card" id="delete-account-form">
             <div class="form-group">
-                <label for="name">الاسم الكامل <span class="required">*</span></label>
-                <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
             </div>
 
             <div class="form-group">
-                <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+                <label for="email">Email Address <span class="required">*</span></label>
                 <input type="email" id="email" name="email" required placeholder="example@email.com">
-                <span class="form-hint">سيتم إرسال تأكيد الحذف على هذا البريد</span>
+                <span class="form-hint">Deletion confirmation will be sent to this email</span>
             </div>
 
             <div class="form-group">
-                <label for="account-id">رقم المستخدم أو البريد المسجل <span class="required">*</span></label>
-                <input type="text" id="account-id" name="account_id" required placeholder="رقم المستخدم أو البريد المستخدم في التسجيل">
+                <label for="account-id">User ID or Registered Email <span class="required">*</span></label>
+                <input type="text" id="account-id" name="account_id" required placeholder="Your user ID or email used during registration">
             </div>
 
             <div class="form-group">
-                <label for="subject">عنوان الطلب <span class="required">*</span></label>
-                <input type="text" id="subject" name="subject" required placeholder="طلب حذف حساب">
-                <span class="form-hint">يجب أن يحتوي على "طلب حذف حساب"</span>
+                <label for="subject">Request Subject <span class="required">*</span></label>
+                <input type="text" id="subject" name="subject" required placeholder="Account Deletion Request">
+                <span class="form-hint">Must contain "Account Deletion Request"</span>
             </div>
 
             <div class="form-group">
-                <label for="reason">سبب الطلب (اختياري)</label>
+                <label for="reason">Reason for Request (Optional)</label>
                 <select id="reason" name="reason">
-                    <option value="">اختر سبب الطلب (اختياري)</option>
-                    <option value="no_longer_use">لا أستخدم التطبيق</option>
-                    <option value="found_better_app">وجدت تطبيقاً أفضل</option>
-                    <option value="privacy_concerns">مخاوف خصوصية</option>
-                    <option value="technical_issues">مشاكل تقنية</option>
-                    <option value="other">أسباب أخرى</option>
+                    <option value="">Select a reason (optional)</option>
+                    <option value="no_longer_use">I no longer use the app</option>
+                    <option value="found_better_app">Found a better app</option>
+                    <option value="privacy_concerns">Privacy concerns</option>
+                    <option value="technical_issues">Technical issues</option>
+                    <option value="other">Other reasons</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="message">وصف إضافي (اختياري)</label>
-                <textarea id="message" name="message" placeholder="يمكنك كتابة أي تفاصيل إضافية أو تعليمات خاصة هنا..."></textarea>
+                <label for="message">Additional Description (Optional)</label>
+                <textarea id="message" name="message" placeholder="You can write any additional details or special instructions here..."></textarea>
+                <div id="char-counter" class="form-hint">0/500 characters</div>
             </div>
 
             <button type="submit" class="submit-btn" id="submit-btn">
-                <span id="btn-text">إرسال طلب الحذف</span>
+                <span id="btn-text">Submit Deletion Request</span>
                 <span id="btn-spinner" class="spinner"></span>
             </button>
         </form>
 
         <div class="contact-info">
-            <p>للاستفسارات: <a href="mailto:m.barakat.m129@gmail.com" style="color: #018159;">m.barakat.m129@gmail.com</a></p>
+            <p>For inquiries: <a href="mailto:m.barakat.m129@gmail.com" class="highlight">m.barakat.m129@gmail.com</a></p>
         </div>
     </div>
 
     <script>
-        // ============ 🔗 رابط الـ Backend الخاص بك ============
-        // هذا هو الرابط الذي حصلت عليه بعد نشر Google Apps Script
+        // ============ 🔗 Your Backend URL ============
+        // This is the link you got after deploying Google Apps Script
         const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwcKi8yUTXw0oQyl0gLzetdYtcQBhR8ADprG6AB5WZ_KGN3mqCJCoV81YU1exUOvqbrhQ/exec';
         
-        // ============ التحقق من البيانات ============
+        // ============ Form Validation ============
         const form = document.getElementById('delete-account-form');
         const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const charCounter = document.getElementById('char-counter');
         
-        // التحقق من عنوان الطلب أثناء الكتابة
+        // Validate subject while typing
         subjectInput.addEventListener('input', function() {
             const value = this.value;
-            const requiredText = 'طلب حذف حساب';
+            const requiredText = 'Account Deletion Request';
             
             if (value.includes(requiredText)) {
                 this.style.borderColor = '#48BB78';
@@ -345,11 +390,25 @@
             }
         });
         
-        // ============ إرسال النموذج ============
+        // Character counter for message
+        messageInput.addEventListener('input', function() {
+            const length = this.value.length;
+            charCounter.textContent = `${length}/500 characters`;
+            
+            if (length > 500) {
+                charCounter.style.color = '#F56565';
+            } else if (length > 400) {
+                charCounter.style.color = '#F2B835';
+            } else {
+                charCounter.style.color = '#718096';
+            }
+        });
+        
+        // ============ Form Submission ============
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // جمع البيانات
+            // Collect form data
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
@@ -359,28 +418,28 @@
                 message: document.getElementById('message').value.trim()
             };
             
-            // التحقق من العنوان
-            if (!formData.subject.includes('طلب حذف حساب')) {
-                alert('يرجى كتابة "طلب حذف حساب" في عنوان الطلب');
+            // Validate subject
+            if (!formData.subject.includes('Account Deletion Request')) {
+                alert('Please write "Account Deletion Request" in the subject line');
                 subjectInput.focus();
                 return;
             }
             
-            // إظهار حالة التحميل
+            // Show loading state
             const submitBtn = document.getElementById('submit-btn');
             const btnText = document.getElementById('btn-text');
             const btnSpinner = document.getElementById('btn-spinner');
             
             submitBtn.disabled = true;
-            btnText.textContent = 'جاري الإرسال...';
+            btnText.textContent = 'Sending Request...';
             btnSpinner.style.display = 'block';
             
-            // إخفاء الرسائل السابقة
+            // Hide previous messages
             document.getElementById('success-message').style.display = 'none';
             document.getElementById('error-message').style.display = 'none';
             
             try {
-                // إرسال البيانات إلى Backend
+                // Send data to Backend
                 const response = await fetch(BACKEND_URL, {
                     method: 'POST',
                     headers: {
@@ -392,34 +451,36 @@
                 const result = await response.json();
                 
                 if (result.success) {
-                    // إظهار رسالة النجاح
+                    // Show success message
                     const successMessage = document.getElementById('success-message');
                     const details = document.getElementById('request-details');
                     
                     details.innerHTML = `
-                        <div style="background: #D1ECF1; padding: 10px; border-radius: 6px; margin-top: 10px;">
-                            <strong>رقم الطلب:</strong> ${result.requestId}<br>
-                            <strong>التاريخ:</strong> ${result.date}<br>
-                            <strong>الوقت:</strong> ${result.time}
+                        <div class="request-id-box">
+                            <strong>Request ID:</strong> ${result.requestId}<br>
+                            <strong>Date:</strong> ${result.date}<br>
+                            <strong>Time:</strong> ${result.time}
                         </div>
                     `;
                     
                     successMessage.style.display = 'flex';
                     
-                    // إعادة تعيين النموذج
+                    // Reset form
                     form.reset();
+                    charCounter.textContent = '0/500 characters';
+                    charCounter.style.color = '#718096';
                     
                 } else {
-                    // إظهار رسالة الخطأ
-                    showErrorMessage(result.message || result.error || 'حدث خطأ في الإرسال');
+                    // Show error message
+                    showErrorMessage(result.message || result.error || 'Error sending request');
                 }
             } catch (error) {
-                console.error('خطأ:', error);
-                showErrorMessage('خطأ في الاتصال بالخادم. يرجى المحاولة مرة أخرى.');
+                console.error('Error:', error);
+                showErrorMessage('Server connection error. Please try again.');
             } finally {
-                // إعادة حالة الزر
+                // Reset button state
                 submitBtn.disabled = false;
-                btnText.textContent = 'إرسال طلب الحذف';
+                btnText.textContent = 'Submit Deletion Request';
                 btnSpinner.style.display = 'none';
             }
         });
@@ -431,27 +492,6 @@
             errorDetails.textContent = message;
             errorMessage.style.display = 'flex';
         }
-        
-        // إضافة عداد الأحرف للرسالة
-        const messageInput = document.getElementById('message');
-        const messageCounter = document.createElement('div');
-        messageCounter.className = 'form-hint';
-        messageCounter.style.textAlign = 'left';
-        messageCounter.textContent = '0/500 حرف';
-        messageInput.parentNode.appendChild(messageCounter);
-        
-        messageInput.addEventListener('input', function() {
-            const length = this.value.length;
-            messageCounter.textContent = `${length}/500 حرف`;
-            
-            if (length > 500) {
-                messageCounter.style.color = '#F56565';
-            } else if (length > 400) {
-                messageCounter.style.color = '#F2B835';
-            } else {
-                messageCounter.style.color = '#718096';
-            }
-        });
     </script>
 </body>
 </html>
