@@ -78,27 +78,41 @@
             padding: 20px;
         }
 
-        /* Header */
+        /* Header - تم التعديل هنا */
         .header {
-            text-align: center;
+            text-align: left;
             margin: 30px 0 50px;
             position: relative;
         }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
         .logo-container:hover {
             transform: translateY(-5px);
         }
 
-        .logo-container::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--gradient-secondary);
-            border-radius: 50%;
-            z-index: -1;
-            animation: rotate 20s linear infinite;
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .header-text {
+            flex: 1;
         }
 
         .app-title {
@@ -107,16 +121,19 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: 800;
             letter-spacing: -0.5px;
+            text-align: left;
+            line-height: 1.2;
         }
 
         .policy-title {
             font-size: 1.8rem;
             color: var(--text-secondary);
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             font-weight: 600;
+            text-align: left;
         }
 
         .last-updated {
@@ -127,6 +144,7 @@
             border-radius: 25px;
             font-size: 0.95rem;
             border: 1px solid rgba(242, 184, 53, 0.3);
+            margin-top: 15px;
         }
 
         /* Cards */
@@ -380,11 +398,6 @@
         }
 
         /* Animations */
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -406,6 +419,12 @@
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
 
             .app-title {
@@ -437,11 +456,6 @@
                 font-size: 1.8rem;
             }
 
-            .logo-container {
-                width: 100px;
-                height: 100px;
-            }
-
             .logo {
                 width: 65px;
                 height: 65px;
@@ -449,6 +463,10 @@
 
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                text-align: left;
             }
         }
 
@@ -475,14 +493,18 @@
     </div>
 
     <div class="container">
-        <!-- Header -->
+        <!-- Header - تم التعديل هنا -->
         <header class="header">
-            <div class="logo-container">
-                <img src="logo_transparent_72.png" alt="My Money Logo" class="logo">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="logo_transparent_72.png" alt="My Money Logo" class="logo">
+                </div>
+                
+                <div class="header-text">
+                    <h1 class="app-title">My Money</h1>
+                    <h2 class="policy-title">Privacy Policy</h2>
+                </div>
             </div>
-            
-            <h1 class="app-title">My Money</h1>
-            <h2 class="policy-title">Privacy Policy</h2>
             
             <div class="last-updated">
                 <i class="fas fa-calendar-alt"></i>
